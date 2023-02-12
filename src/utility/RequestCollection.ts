@@ -1,7 +1,6 @@
 import { CyHttpMessages, StaticResponse } from "cypress/types/net-stubbing";
 import createRequestKey from "./createRequestKey";
 import EnvComponentManager from "./EnvComponentManager";
-import IncomingRequest = CyHttpMessages.IncomingRequest;
 import Logger, { LoggerInterface } from "./Logger";
 
 export type RequestMap = Map<string, Promise<StaticResponse>[]>;
@@ -41,7 +40,7 @@ export default class RequestCollection {
         });
     }
 
-    pushIncomingRequest(request: IncomingRequest, response: Promise<StaticResponse>) {
+    pushIncomingRequest(request: CyHttpMessages.IncomingRequest, response: Promise<StaticResponse>) {
         const key = this.envComponentManager.removeDynamicComponents(createRequestKey(request));
         if (!this.requests.has(key)) {
             this.requests.set(key, []);
@@ -49,7 +48,7 @@ export default class RequestCollection {
         this.requests.get(key)!.push(response);
     }
 
-    shiftRequest(request: IncomingRequest): Promise<StaticResponse | null> {
+    shiftRequest(request: CyHttpMessages.IncomingRequest): Promise<StaticResponse | null> {
         const key = this.envComponentManager.removeDynamicComponents(createRequestKey(request));
         if (!this.requests.has(key) || this.requests.get(key)!.length === 0) {
             this.logger.push("Request missing from fixture", { key });

@@ -1,5 +1,6 @@
 {
   "exclude": [
+    "gherkin-bdd-tests",
     "integration-tests",
     "lib",
     "**/*.test.ts"

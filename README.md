@@ -108,3 +108,11 @@ responses for a given endpoint the fixed response will be inserted.
 I find it useful to create scripts that setup the state of your API services for recording. This might be installing a
 standard set of test content or creating certain pre-conditions in your application. By doing this, you can easily
 rerecord each test as your client code changes the requests it makes to your services.
+
+## Cucumber / Gherkin setup
+
+For any application using Cucumber and Gherkin BDD setup, use ``enableCypressGherkinReplay(config)`` inside the step definition files. 
+
+Then inside the feature files use ``@record``/``@replay`` tags to record or replay http responses.
+
+If you would like to change the tags used for recording and replaying, use ``recordTags``/``replayTags`` to override the ``@record``/``@replay`` tags respectively.

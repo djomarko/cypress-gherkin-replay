@@ -1,7 +1,6 @@
 import { CyHttpMessages } from "cypress/types/net-stubbing";
-import IncomingRequest = CyHttpMessages.IncomingRequest;
 
-export default function createRequestKey(request: IncomingRequest) {
+export default function createRequestKey(request: CyHttpMessages.IncomingRequest) {
     const keyComponents = [request.method, request.url];
 
     if (typeof request.body === "object") {
