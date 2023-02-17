@@ -1,6 +1,6 @@
 {
   "name": "cypress-gherkin-replay",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "authors": ["djomarko","Sam <54m152@gmail.com>"],
@@ -22,7 +22,8 @@
     "test-integration": "CYPRESS_API_URL='https://jsonplaceholder.cypress.io' cypress open --project integration-tests",
     "bdd-integration": "CYPRESS_API_URL='https://jsonplaceholder.cypress.io' cypress open --project gherkin-bdd-tests",
     "pretty": "prettier src --write",
-    "release-patch": "yarn run build && npm version patch && npm publish"
+    "patch": "yarn run build && npm version patch",
+    "release-patch": "yarn patch && npm publish"
   },
   "files": [
     "lib/**/*"

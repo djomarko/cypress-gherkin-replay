@@ -2,4 +2,4 @@
 /lib
 /yarn-error.log
 /.idea
-/yarn.lock
+.npmrc
