@@ -107,3 +107,23 @@ test("the response map can be resolved from pending requests that have yet to co
         ],
     });
 });
+
+test("the shiftRequest method throws an error when the errorOnMissingResponse flag is set to true", () => {
+    const collection = new RequestCollection(new EnvComponentManager({}));
+    expect(() => {
+        collection.shiftRequest(requestA, true);
+    }).toThrow();
+});
+
+test("the shiftRequest method doesn't throw an error when there is a response in the collection", () => {
+    const collection = new RequestCollection(new EnvComponentManager({}));
+    collection.pushIncomingRequest(
+        requestA,
+        Promise.resolve({
+            body: "Request A first response",
+        })
+    );
+    expect(() => {
+        collection.shiftRequest(requestA, true);
+    }).not.toThrow();
+});

@@ -43,7 +43,7 @@ export const beforeReplayFn = (configuration: ReplayConfig): Logger => {
         // Start interception based on the resolved request collection.
         .then((requestCollection) => {
             cy.intercept(new RegExp(configuration.interceptPattern || ".*"), async (req: CyHttpMessages.IncomingHttpRequest) => {
-                const fixtureResponse = await requestCollection.shiftRequest(req);
+                const fixtureResponse = await requestCollection.shiftRequest(req, configuration.errorOnMissingResponse);
                 if (fixtureResponse) {
                     req.reply({
                         ...fixtureResponse,

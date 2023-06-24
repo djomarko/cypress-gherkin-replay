@@ -48,9 +48,12 @@ export default class RequestCollection {
         this.requests.get(key)!.push(response);
     }
 
-    shiftRequest(request: CyHttpMessages.IncomingRequest): Promise<StaticResponse | null> {
+    shiftRequest(request: CyHttpMessages.IncomingRequest, errorOnMissingResponse = false): Promise<StaticResponse | null> {
         const key = this.envComponentManager.removeDynamicComponents(createRequestKey(request));
         if (!this.requests.has(key) || this.requests.get(key)!.length === 0) {
+            if(errorOnMissingResponse){
+                throw Error(`Request missing from fixture: ${key}`);
+            }
             this.logger.push("Request missing from fixture", { key });
             return Promise.resolve(null);
         }

@@ -2,6 +2,7 @@ export interface ReplayConfig {
     interceptPattern?: string;
     dynamicRequestEnvComponents?: Array<string>;
     responseDelayOverride?: number;
+    errorOnMissingResponse?: boolean;
 }
 
 export enum ReplayMode {

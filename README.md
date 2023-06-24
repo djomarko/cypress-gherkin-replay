@@ -64,6 +64,13 @@ dynamicRequestEnvComponents: ["REACT_APP_MY_API_ENDPOINT"],
  * instant) for how long a response is delayed during a replay.  
  */
 responseDelayOverride: 20,
+
+/**
+ * To ensure that all the required endpoints have been stubbed, set the errorOnMissingResponse
+ * flag to true (false by default). This will cause the test to fail if a request is made that does not have a stubbed
+ * response. This is useful for ensuring that all required endpoints from the interceptPattern have been stubbed.
+ */
+errorOnMissingResponse: true,
 ```
 
 ## Choosing the mode (recording or replaying)
